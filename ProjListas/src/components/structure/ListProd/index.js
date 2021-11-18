@@ -18,7 +18,7 @@ const ListProd = () => {
   // }, [count])
 
   const getProdutos = async () => {
-    const request = await fetch('http://localhost:3001/musicas')
+    const request = await fetch('http://localhost:3001/produtos')
     // data = recebe os dados da api (musicas).
     const data = await request.json();
     // atualizo meu estado em memoria com as musicas - para atualizar no DOM.

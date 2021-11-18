@@ -52,7 +52,7 @@ const Edit = () => {
                     className="form-control"
                     type="text"
                     placeholder="Nome do Produto"
-                    value={produto.nome}
+                    value={produto.titulo}
                     onChange={handleFieldsChange}
                     name="titulo"
                   />
@@ -60,26 +60,28 @@ const Edit = () => {
               </div>
               <div className="col-4">
                 <div className="form-group">
-                  <label htmlFor="descricao">Descrição:</label>
+                  <label htmlFor="descricao">Descrição do produto:</label>
                   <input
+                  
                     id="descricao"
                     type="text"
                     className="form-control"
                     placeholder="Descrição do Produto"
-                    value={produto.autor}
+                    value={produto.descricao}
                     onChange={handleFieldsChange}
                     name="descricao"
+                    
                   />
                 </div>
               </div>
               <div className="col-4">
                 <div className="form-group">
-                  <label htmlFor="prioridade">Genero da musica:</label>
+                  <label htmlFor="prioridade">Prioridade do Produto:</label>
                   <input
                     id="prioridade"
                     type="text"
                     className="form-control"
-                    value={produto.tipo}
+                    value={produto.prioridade}
                     onChange={handleFieldsChange}
                     placeholder="ruim bom otimo"
                     name="prioridade"
@@ -90,7 +92,7 @@ const Edit = () => {
             <div className="row">
               <div className="col-4">
                 <div className="form-group">
-                  <label htmlFor="capa">Capa:</label>
+                  <label htmlFor="capa">Link do Produto:</label>
                   <input
                     id="capa"
                     type="text"
@@ -121,8 +123,8 @@ const Edit = () => {
                   <label htmlFor="data">Validade :</label>
                   <input
                     id="data"
-                    type="time"
-                    value={produto.prazo}
+                    type="date"
+                    value={produto.data}
                     onChange={handleFieldsChange}
                     className="form-control"
                     placeholder="Validade"
