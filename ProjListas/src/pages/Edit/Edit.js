@@ -6,28 +6,28 @@ const Edit = () => {
   // acessa o id no parametro da url;
   const { id } = useParams();
   // inicializar o meu estado do objeto musica
-  const [musica, setMusica] = useState({});
+  const [produto, setProduto] = useState({});
 
   // use Effect chama a funcao que retorna o objeto do backend de acordo com o id
   useEffect(() => {
-    getMusicaById();
+    getProdutoById();
   }, [])
 
-  const getMusicaById = async () => {
+  const getProdutoById = async () => {
     const request = await Api.fetchGetById(id);
-    const musica = await request.json();
-    setMusica(musica);
+    const produto = await request.json();
+    setProduto(produto);
   };
 
   const handleFieldsChange = (evento) => {
     // copia do objeto musicas
-    const campos = { ...musica }
+    const campos = { ...produto }
 
     // para cada input eu atualizo o seu respectivo valor no obj
     campos[evento.target.name] = evento.target.value;
 
     console.log(campos);
-    setMusica(campos);
+    setProduto(campos);
 
   }
 
@@ -37,7 +37,7 @@ const Edit = () => {
         <div className="card-title">
           <div className="row">
             <div className="col">
-              <h3 className="mx-3 my-3">Edição da Música</h3>
+              <h3 className="mx-3 my-3">Edição do Produto</h3>
             </div>
           </div>
         </div>
@@ -46,43 +46,43 @@ const Edit = () => {
             <div className="row mb-4">
               <div className="col-4">
                 <div className="form-group">
-                  <label htmlFor="nome">Nome da musica:</label>
+                  <label htmlFor="titulo">Titulo:</label>
                   <input
-                    id="nome"
+                    id="titulo"
                     className="form-control"
                     type="text"
-                    placeholder="Nome da musica"
-                    value={musica.nome}
+                    placeholder="Nome do Produto"
+                    value={produto.nome}
                     onChange={handleFieldsChange}
-                    name="nome"
+                    name="titulo"
                   />
                 </div>
               </div>
               <div className="col-4">
                 <div className="form-group">
-                  <label htmlFor="autor">Nome do autor:</label>
+                  <label htmlFor="descricao">Descrição:</label>
                   <input
-                    id="autor"
+                    id="descricao"
                     type="text"
                     className="form-control"
-                    placeholder="Nome do autor"
-                    value={musica.autor}
+                    placeholder="Descrição do Produto"
+                    value={produto.autor}
                     onChange={handleFieldsChange}
-                    name="autor"
+                    name="descricao"
                   />
                 </div>
               </div>
               <div className="col-4">
                 <div className="form-group">
-                  <label htmlFor="genero">Genero da musica:</label>
+                  <label htmlFor="prioridade">Genero da musica:</label>
                   <input
-                    id="genero"
+                    id="prioridade"
                     type="text"
                     className="form-control"
-                    value={musica.genero}
+                    value={produto.tipo}
                     onChange={handleFieldsChange}
-                    placeholder="Genero da musica"
-                    name="genero"
+                    placeholder="ruim bom otimo"
+                    name="prioridade"
                   />
                 </div>
               </div>
@@ -90,31 +90,43 @@ const Edit = () => {
             <div className="row">
               <div className="col-4">
                 <div className="form-group">
-                  <label htmlFor="capa">Capa do album:</label>
+                  <label htmlFor="capa">Capa:</label>
                   <input
                     id="capa"
                     type="text"
-                    value={musica.capa}
+                    value={produto.capa}
                     onChange={handleFieldsChange}
                     className="form-control"
-                    placeholder="URL da capa do album"
+                    placeholder="URL da Produto"
                     name="capa"
                   />
                 </div>
               </div>
               <div className="col-4">
                 <div className="form-group">
-                  <label htmlFor="duracao">Duração da musica:</label>
+                  <label htmlFor="prazo">Validade do produto:</label>
                   <input
-                    id="duracao"
+                    id="prazo"
                     type="time"
-                    value={musica.duracao}
+                    value={produto.prazo}
                     onChange={handleFieldsChange}
                     className="form-control"
-                    min="00:00"
-                    max="10:00"
-                    placeholder="Duraçao da musica"
-                    name="duracao"
+                    placeholder="Validade"
+                    name="prazo"
+                  />
+                </div>
+              </div>
+              <div className="col-4">
+                <div className="form-group">
+                  <label htmlFor="data">Validade :</label>
+                  <input
+                    id="data"
+                    type="time"
+                    value={produto.prazo}
+                    onChange={handleFieldsChange}
+                    className="form-control"
+                    placeholder="Validade"
+                    name="data"
                   />
                 </div>
               </div>

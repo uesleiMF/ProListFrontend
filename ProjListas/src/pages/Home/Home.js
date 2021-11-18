@@ -1,5 +1,5 @@
 import React from 'react'
-import ListMusic from '../../components/structure/ListMusic';
+import ListMusic from '../../components/structure/ListProd';
 
 const Home = () => {
   return (

@@ -9,21 +9,25 @@ const Cadastro = () => {
     evento.preventDefault();
     // target = quem disparou o evento
     console.log(evento.target);
-    const nome = evento.target.nome.value;
-    const autor = evento.target.autor.value;
-    const genero = evento.target.genero.value;
+    const titulo = evento.target.titulo.value;
+    const descricao = evento.target.descricao.value;
+    const prioridade= evento.target.prioridade.value;
+    const status= evento.target.status.value;
     const capa = evento.target.capa.value;
-    const duracao = evento.target.duracao.value;
+    const data= evento.target.data.value;
+    const prazo = evento.target.prazo.value;
 
-    const musica = {
-      nome,
-      autor,
-      genero,
+    const produto = {
+      titulo,
+      descricao,
+      prioridade,
+      status,
       capa,
-      duracao
+      data,
+      prazo
     }
 
-    const request = await Api.fetchPost(musica);
+    const request = await Api.fetchPost(produto);
     if(request.status === 500) {
       alert('ERRO NO SERVIDOR')
     }
@@ -42,7 +46,7 @@ const Cadastro = () => {
         <div className="card-title">
           <div className="row">
             <div className="col">
-              <h3 className="mx-3 my-3">Cadastro de Músicas</h3>
+              <h3 className="mx-3 my-3">Cadastro de Produtos</h3>
             </div>
           </div>
         </div>
@@ -51,35 +55,47 @@ const Cadastro = () => {
             <div className="row mb-4">
               <div className="col-4">
                 <div className="form-group">
-                  <label htmlFor="nome">Nome da musica:</label>
-                  <input id="nome" className="form-control" type="text" placeholder="Nome da musica" name="nome"/>
+                  <label htmlFor="titulo">Titulo:</label>
+                  <input id="titulo" className="form-control" type="text" placeholder="Nome do Produto" name="titulo"/>
                 </div>
               </div>
               <div className="col-4">
                 <div className="form-group">
-                  <label htmlFor="autor">Nome do autor:</label>
-                  <input id="autor" type="text" className="form-control" placeholder="Nome do autor" name="autor"/>
+                  <label htmlFor="descricao">Descrição:</label>
+                  <input id="descricao" type="text" className="form-control" placeholder="Nome do autor" name="descricao"/>
                 </div>
               </div>
               <div className="col-4">
                 <div className="form-group">
-                  <label htmlFor="genero">Genero da musica:</label>
-                  <input id="genero" type="text" className="form-control" placeholder="Genero da musica" name="genero"/>
+                  <label htmlFor="prioridade">Prioridade :</label>
+                  <input id="prioridade" type="text" className="form-control" placeholder="Tipo do Produto" name="prioridade"/>
                 </div>
               </div>
-            </div>
+            <div className="col-4">
+                <div className="form-group">
+                  <label htmlFor="status">Status :</label>
+                  <input id="status" type="text" className="form-control" placeholder="Tipo do Produto" name="status"/>
+                </div>
+              </div>
             <div className="row">
               <div className="col-4">
                 <div className="form-group">
-                  <label htmlFor="capa">Capa do album:</label>
+                  <label htmlFor="capa">Capa:</label>
                   <input id="capa" type="text" className="form-control" placeholder="URL da capa do album" name="capa"/>
                 </div>
               </div>
               <div className="col-4">
                 <div className="form-group">
-                  <label htmlFor="duracao">Duração da musica:</label>
-                  <input id="duracao" type="time" className="form-control" min="00:00" max="10:00" placeholder="Duraçao da musica" name="duracao"/>
+                  <label htmlFor="prazo">Pazo:</label>
+                  <input id="prazo" type="time" className="form-control" min="00:00" max="10:00" placeholder="Duraçao da musica" name="prazo"/>
                 </div>
+              </div>
+              <div className="col-4">
+                <div className="form-group">
+                  <label htmlFor="data">Data:</label>
+                  <input id="data" type="date" className="form-control"  placeholder="Duraçao da musica" name="data"/>
+                </div>
+              </div>
               </div>
               <div className="col-4 d-flex align-items-end justify-content-around">
                 <button type="submit" className="btn btn-success">Enviar</button>

@@ -8,7 +8,7 @@ const Header = () => {
           <span className="navbar-toggler-icon"></span>
         </button>
         <Link className="navbar-brand" to="/">
-          Minhas Musicas
+          Catalogo de Produtos
         </Link>
         <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
