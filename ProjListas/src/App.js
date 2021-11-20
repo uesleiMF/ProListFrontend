@@ -13,16 +13,23 @@ import Edit from './pages/Edit/Edit';
 // pages - é um componente geral que pode conter outros componentes que contem uma estrutura de pagina.
 function App() {
   return (
-    <div>
+    
+            <div>   
+        
       <Header/>
+      
       <Routes>
-        <Route path="/" element={<Home/>} />
+        <Route path="/" element={<Home/>}  />
         <Route path="/cadastro" element={<Cadastro/>}/>
         <Route path="/view/:id" element={<View/>}/>
         <Route path="/edit/:id" element={<Edit/>}/>
       </Routes>
-    </div>
+      </div>
+
+        
+         
   );
 }
+
 
 export default App;

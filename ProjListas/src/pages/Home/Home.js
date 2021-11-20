@@ -7,9 +7,15 @@ const Home = () => {
    
      
     <div className="container">
+      <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
       
-      <h1 className="text-center h1">PAGINA DA HOME</h1>
+      <h1 className="text-center h1">CONHEÇA NOSSOS PRODUTOS</h1>
       <ListProdut/>
+    </div>
+    </div>
+    </div>
     </div>
   
   )

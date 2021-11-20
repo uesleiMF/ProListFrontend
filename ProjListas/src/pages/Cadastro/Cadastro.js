@@ -44,7 +44,7 @@ const Cadastro = () => {
    
 
     <div className="container">
-      <div className="card mt-4">
+      <div className="card mt-3">
         <div className="card-title">
           <div className="row">
             <div className="col">
@@ -55,54 +55,54 @@ const Cadastro = () => {
         </div>
         <div className="card-body">
           <form onSubmit={handleSubmit}>
-            <div className="row mb-4">
-              <div className="col-4">
+            <div className="row mb-3">
+              <div className="col-5">
                 <div className="form-group">
                   <label htmlFor="titulo">Titulo:</label>
                   <input id="titulo" className="form-control" type="text" placeholder="Nome do Produto" name="titulo"/>
                 </div>
               </div>
-              <div className="col-4">
+              <div className="col-5">
                 <div className="form-group">
                   <label htmlFor="descricao">Descrição:</label>
                   <input id="descricao" type="text" className="form-control" placeholder="Nome do autor" name="descricao"/>
                 </div>
               </div>
-              <div className="col-4">
+              <div className="col-5">
                 <div className="form-group">
                   <label htmlFor="prioridade">Prioridade :</label>
                   <input id="prioridade" type="text" className="form-control" placeholder="Tipo do Produto" name="prioridade"/>
                 </div>
               </div>
-            <div className="col-4">
+            <div className="col-5">
                 <div className="form-group">
                   <label htmlFor="status">Status :</label>
                   <input id="status" type="text" className="form-control" placeholder="Tipo do Produto" name="status"/>
                 </div>
               </div>
             <div className="row">
-              <div className="col-4">
+              <div className="col-5">
                 <div className="form-group">
                   <label htmlFor="capa">Capa:</label>
                   <input id="capa" type="text" className="form-control" placeholder="URL da capa do album" name="capa"/>
                 </div>
               </div>
-              <div className="col-4">
+              <div className="col-5">
                 <div className="form-group">
                   <label htmlFor="prazo">Pazo:</label>
                   <input id="prazo" type="time" className="form-control" min="00:00" max="10:00" placeholder="Duraçao da musica" name="prazo"/>
                 </div>
               </div>
-              <div className="col-4">
+              <div className="col-5">
                 <div className="form-group">
                   <label htmlFor="data">Data:</label>
                   <input id="data" type="date" className="form-control"  placeholder="Duraçao da musica" name="data"/>
                 </div>
               </div>
               </div>
-              <div className="col-4 d-flex align-items-end justify-content-around">
+              <div className="col-5 d-flex align-items-end justify-content-around">
                 <button type="submit" className="btn btn-success">Enviar</button>
-                <button type="button" className="btn btn-danger">Voltar</button>
+                <button type="reset" className="btn btn-danger">Limpar</button>
               </div>
             </div>
                     
