@@ -1,17 +1,27 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Api from "../../api/api";
 
 const Edit = () => {
-  // acessa o id no parametro da url;
-  const { id } = useParams();
-  // inicializar o meu estado do objeto musica
-  const [produto, setProduto] = useState({});
+  
+  const navigate = useNavigate();
+  
+  const [produto, setProduto] = useState({
+     titulo: '',
+     descricao:'',
+     prioridade:'',
+     status:'',
+     capa:'',
+     data:'',
+     prazo:''
 
-  // use Effect chama a funcao que retorna o objeto do backend de acordo com o id
-  useEffect(() => {
+  });
+
+   useEffect(() => {
     getProdutoById();
-  }, [])
+  }, []);
+
+  const {id}= useParams();
 
   const getProdutoById = async () => {
     const request = await Api.fetchGetById(id);
@@ -21,15 +31,22 @@ const Edit = () => {
 
   const handleFieldsChange = (evento) => {
     // copia do objeto musicas
-    const campos = { ...produto }
+    const produtoEdit = { ...produto };
 
     // para cada input eu atualizo o seu respectivo valor no obj
-    campos[evento.target.name] = evento.target.value;
+    produtoEdit[evento.target.name] = evento.target.value;
 
-    console.log(campos);
-    setProduto(campos);
+    setProduto(produtoEdit);
 
   }
+  const handleSubmit = async (evento) => {
+    evento.preventDefault();
+    const request = await Api.fetchPut(produto, id);
+    const data = await request.json();
+    alert(data.message);
+    navigate(`/view/${id}`);
+  }
+
 
   return (
     <div className="container">
@@ -42,7 +59,7 @@ const Edit = () => {
           </div>
         </div>
         <div className="card-body">
-          <form>
+        <form onSubmit={handleSubmit}>
             <div className="row mb-4">
               <div className="col-4">
                 <div className="form-group">

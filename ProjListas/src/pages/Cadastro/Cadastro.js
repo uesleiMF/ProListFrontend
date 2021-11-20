@@ -41,11 +41,14 @@ const Cadastro = () => {
   }
 
   return (
+   
+
     <div className="container">
       <div className="card mt-4">
         <div className="card-title">
           <div className="row">
             <div className="col">
+              
               <h3 className="mx-3 my-3">Cadastro de Produtos</h3>
             </div>
           </div>
@@ -102,11 +105,20 @@ const Cadastro = () => {
                 <button type="button" className="btn btn-danger">Voltar</button>
               </div>
             </div>
+                    
+          
           </form>
         </div>
       </div>
     </div>
+
+
+
+
+
   )
 }
+
+
 
 export default Cadastro
