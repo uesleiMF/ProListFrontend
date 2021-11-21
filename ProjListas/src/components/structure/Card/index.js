@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Card = (props) => {
-  // objeto musica
+  
   const produto = props.data;
   return (
     <Link to={`/view/${produto._id}`} className="col">

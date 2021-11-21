@@ -126,7 +126,7 @@ const Edit = () => {
                   <label htmlFor="prazo">Validade do produto:</label>
                   <input
                     id="prazo"
-                    type="time"
+                    type="date"
                     value={produto.prazo}
                     onChange={handleFieldsChange}
                     className="form-control"
