@@ -65,19 +65,19 @@ const Cadastro = () => {
               <div className="col-5">
                 <div className="form-group">
                   <label htmlFor="descricao">Descrição:</label>
-                  <input id="descricao" type="text" className="form-control" placeholder="Nome do autor" name="descricao"/>
+                  <input id="descricao" type="text" className="form-control" placeholder="Descrição do Produto" name="descricao"/>
                 </div>
               </div>
               <div className="col-5">
                 <div className="form-group">
                   <label htmlFor="prioridade">Prioridade :</label>
-                  <input id="prioridade" type="text" className="form-control" placeholder="Tipo do Produto" name="prioridade"/>
+                  <input id="prioridade" type="text" className="form-control" placeholder="(Ruim) (Bom) (Otimo)" name="prioridade"/>
                 </div>
               </div>
             <div className="col-5">
                 <div className="form-group">
                   <label htmlFor="status">Status :</label>
-                  <input id="status" type="text" className="form-control" placeholder="Tipo do Produto" name="status"/>
+                  <input id="status" type="text" className="form-control" placeholder="(Tipo1) (Tipo2) (Fora do Tipo)" name="status"/>
                 </div>
               </div>
             
@@ -89,14 +89,14 @@ const Cadastro = () => {
               </div>
               <div className="col-5">
                 <div className="form-group">
-                  <label htmlFor="prazo">Pazo:</label>
-                  <input id="prazo" type="date" className="form-control" min="00:00" max="10:00" placeholder="Duraçao da musica" name="prazo"/>
+                  <label htmlFor="prazo">Data de Validade:</label>
+                  <input id="prazo" type="date" className="form-control" placeholder="Data de Vencimento" name="prazo"/>
                 </div>
               </div>
               <div className="col-5">
                 <div className="form-group">
-                  <label htmlFor="data">Data:</label>
-                  <input id="data" type="date" className="form-control"  placeholder="Duraçao da musica" name="data"/>
+                  <label htmlFor="data">Data de Fabricação:</label>
+                  <input id="data" type="date" className="form-control"  placeholder="Data Fabricação" name="data"/>
                 </div>
               </div>
             

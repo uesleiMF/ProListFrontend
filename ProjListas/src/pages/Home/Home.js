@@ -1,23 +1,28 @@
 import React from 'react'
 import ListProdut from '../../components/structure/ListProd';
 
-
 const Home = () => {
   return (
    
      
     <div className="container">
-      <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      
-      <h1 className="text-center h1">PRODUTOS ALIMENTICIOS</h1>
-      <ListProdut/>
-    </div>
-    </div>
-    </div>
-    </div>
+     <div className="row mb-3">
+    <div class="container bg-info">
+  <div class="nome text-center">
+  <div className="col-9">
   
+</div>
+<div class="p-1 mb-2 bg-info text-black">
+    
+    <h1 className="text-center h1">CONHEÇA NOSSOS PRODUTOS</h1>
+    <ListProdut/>
+     
+
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
   )
 }
 
