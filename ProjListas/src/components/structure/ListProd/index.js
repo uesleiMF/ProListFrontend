@@ -17,9 +17,9 @@ const ListProd = () => {
 
   return (
     <div class="card-deck">
-  <div class="card bg-info">
-    <div class="card-body text-center"/>
-    <div className="row row-cols-1 row-cols-md-3 mt-3 g-4">
+  <div class="card bg-success">
+    <div class="card-body text-center "/>
+    <div className="row row-cols-1 row-cols-md-4 mt-4  rounded-circle ">
       { }
       {produtos.map((produto) => (
         <Card data={produto} key={produto._id}/>

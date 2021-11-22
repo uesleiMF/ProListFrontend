@@ -30,11 +30,10 @@ const Edit = () => {
   };
 
   const handleFieldsChange = (evento) => {
-    // copia do objeto musicas
+    
     const produtoEdit = { ...produto };
 
-    // para cada input eu atualizo o seu respectivo valor no obj
-    produtoEdit[evento.target.name] = evento.target.value;
+     produtoEdit[evento.target.name] = evento.target.value;
 
     setProduto(produtoEdit);
 
@@ -51,7 +50,7 @@ const Edit = () => {
   return (
     <div className="container">
       <div className="card mt-4">
-        <div className="card-title">
+        <div className="card-title ">
           <div className="row">
             <div className="col">
               <h3 className="mx-3 my-3">Edição do Produto</h3>
@@ -153,9 +152,7 @@ const Edit = () => {
                 <button type="submit" className="btn btn-success">
                   Enviar
                 </button>
-                <button type="button" className="btn btn-danger">
-                  Voltar
-                </button>
+                
               </div>
             </div>
           

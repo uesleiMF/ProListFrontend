@@ -11,7 +11,7 @@ const Home = () => {
   <div class="carousel-inner">
     <div class="carousel-item active">
       
-      <h1 className="text-center h1">CONHEÇA NOSSOS PRODUTOS</h1>
+      <h1 className="text-center h1">PRODUTOS ALIMENTICIOS</h1>
       <ListProdut/>
     </div>
     </div>
