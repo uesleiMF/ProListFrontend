@@ -5,7 +5,7 @@ import Carousel from 'react-bootstrap/Carousel'
 
 const Inicio = () => {
   return (
-   
+       
      
     <div className="container">
       <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">

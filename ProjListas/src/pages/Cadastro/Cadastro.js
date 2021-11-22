@@ -44,12 +44,12 @@ const Cadastro = () => {
    
 
     <div className="container">
-      <div className="card mt-3">
+      <div className="card mt-3 bg-warning">
         <div className="card-title">
           <div className="row">
             <div className="col">
               
-              <h3 className="mx-3 my-3">Cadastro de Produtos</h3>
+              <h3 className="mx-3 my-3 text-center">Cadastro de Produtos</h3>
             </div>
           </div>
         </div>
@@ -80,7 +80,7 @@ const Cadastro = () => {
                   <input id="status" type="text" className="form-control" placeholder="Tipo do Produto" name="status"/>
                 </div>
               </div>
-            <div className="row">
+            
               <div className="col-5">
                 <div className="form-group">
                   <label htmlFor="capa">Capa:</label>
@@ -99,7 +99,8 @@ const Cadastro = () => {
                   <input id="data" type="date" className="form-control"  placeholder="Duraçao da musica" name="data"/>
                 </div>
               </div>
-              </div>
+            
+              
               <div className="col-5 d-flex align-items-end justify-content-around">
                 <button type="submit" className="btn btn-success">Enviar</button>
                 <button type="reset" className="btn btn-danger">Limpar</button>
@@ -110,7 +111,8 @@ const Cadastro = () => {
           </form>
         </div>
       </div>
-    </div>
+      </div>
+    
 
 
 
