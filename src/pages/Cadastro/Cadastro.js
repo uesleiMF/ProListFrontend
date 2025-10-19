@@ -71,13 +71,13 @@ const Cadastro = () => {
               <div className="col-5">
                 <div className="form-group">
                   <label htmlFor="prioridade">Prioridade :</label>
-                  <input id="prioridade" type="text" className="form-control" placeholder="(Ruim) (Bom) (Otimo)" name="prioridade"/>
+                  <input id="prioridade" type="text" className="form-control" placeholder=" " name="prioridade"/>
                 </div>
               </div>
             <div className="col-5">
                 <div className="form-group">
                   <label htmlFor="status">Status :</label>
-                  <input id="status" type="text" className="form-control" placeholder="(Tipo1) (Tipo2) (Fora do Tipo)" name="status"/>
+                  <input id="status" type="text" className="form-control" placeholder=" " name="status"/>
                 </div>
               </div>
             
