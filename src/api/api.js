@@ -1,5 +1,5 @@
 const Api = {
-  apiUrl: 'http://localhost:3001/produtos',
+  apiUrl: 'https://prolistbackend-3zb4.onrender.com/produtos',
   fetchGetAll: () => fetch(Api.apiUrl),
   fetchGetById: (id) => fetch(`${Api.apiUrl}/${id}`),
   fetchPost: (data) => {

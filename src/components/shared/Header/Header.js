@@ -24,24 +24,16 @@ const Header = () => {
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
               <Link className="nav-link" to="/">
-                Home
+               Produtos Cadastrado
               </Link>
             </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/Inicio">
-                Cadastro
-              </Link>
-            </li>
+            
             <li className="nav-item">
               <Link className="nav-link" to="/cadastro">
-                Produtos Cadastrados
+                 Cadastrado de Produtos
               </Link>
             </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/edit">
-                Editar Produtos
-              </Link>
-            </li>
+            
           </ul>
         </div>
       </div>

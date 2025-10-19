@@ -9,7 +9,7 @@ const ListProd = () => {
 
   
   const getProdutos = async () => {
-    const request = await fetch('http://localhost:3001/produtos')
+    const request = await fetch('https://prolistbackend-3zb4.onrender.com/produtos')
     const data = await request.json();
       setProdutos(data);
   }
