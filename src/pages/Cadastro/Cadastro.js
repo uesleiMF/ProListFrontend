@@ -1,21 +1,46 @@
-import React from 'react'
+import React, { useState } from 'react';
 import Api from '../../api/api';
 import { useNavigate } from 'react-router-dom';
 
 const Cadastro = () => {
   const navigate = useNavigate();
-  
+  const [erro, setErro] = useState('');
+  const [loading, setLoading] = useState(false);
+
   const handleSubmit = async (evento) => {
     evento.preventDefault();
-    // target = quem disparou o evento
-    console.log(evento.target);
-    const titulo = evento.target.titulo.value;
-    const descricao = evento.target.descricao.value;
-    const prioridade= evento.target.prioridade.value;
-    const status= evento.target.status.value;
-    const capa = evento.target.capa.value;
-    const data= evento.target.data.value;
+    setErro('');
+    setLoading(true);
+
+    const titulo = evento.target.titulo.value.trim();
+    const descricao = evento.target.descricao.value.trim();
+    const prioridade = evento.target.prioridade.value;
+    const status = evento.target.status.value;
+    const capa = evento.target.capa.value.trim();
     const prazo = evento.target.prazo.value;
+    const data = evento.target.data.value;
+
+    // Validação frontend
+    if (!titulo || !descricao) {
+      setErro('Título e descrição são obrigatórios.');
+      setLoading(false);
+      return;
+    }
+
+    const validPrioridades = ['baixa', 'media', 'alta'];
+    const validStatus = ['pendente', 'em_andamento', 'concluido'];
+
+    if (!validPrioridades.includes(prioridade)) {
+      setErro('Prioridade inválida.');
+      setLoading(false);
+      return;
+    }
+
+    if (!validStatus.includes(status)) {
+      setErro('Status inválido.');
+      setLoading(false);
+      return;
+    }
 
     const produto = {
       titulo,
@@ -23,104 +48,138 @@ const Cadastro = () => {
       prioridade,
       status,
       capa,
-      data,
-      prazo
-    }
+      prazo: prazo || null,
+      data: data || null,
+    };
 
-    const request = await Api.fetchPost(produto);
-    if(request.status === 500) {
-      alert('ERRO NO SERVIDOR')
+    try {
+      const result = await Api.fetchPost(produto);
+
+      if (result.error) {
+        // Pode ser array ou string
+        const mensagemErro = Array.isArray(result.error)
+          ? result.error.join(', ')
+          : result.error;
+        setErro(mensagemErro);
+      } else {
+        alert('Produto cadastrado com sucesso!');
+        navigate('/');
+      }
+    } catch (err) {
+      setErro('Erro no servidor. Tente novamente.');
+      console.error(err);
+    } finally {
+      setLoading(false);
     }
-    const result = await request.json();
-    if(result.error) {
-      console.log(result.error);
-    }else {
-      alert(result.message);
-      navigate('/');
-    }
-  }
+  };
 
   return (
-   
+    <div className="container my-5">
+      <div className="card p-4 bg-warning">
+        <h3 className="text-center mb-4">Cadastro de Produtos</h3>
 
-    <div className="container">
-      <div className="card mt-3 bg-warning">
-        <div className="card-title">
-          <div className="row">
-            <div className="col">
-              
-              <h3 className="mx-3 my-3 text-center">Cadastro de Produtos</h3>
+        {erro && <p className="text-danger text-center">{erro}</p>}
+
+        <form onSubmit={handleSubmit}>
+          <div className="row mb-3">
+            <div className="col-md-6 mb-3">
+              <label htmlFor="titulo">Título:</label>
+              <input
+                id="titulo"
+                name="titulo"
+                type="text"
+                className="form-control"
+                placeholder="Nome do Produto"
+                required
+              />
+            </div>
+
+            <div className="col-md-6 mb-3">
+              <label htmlFor="descricao">Descrição:</label>
+              <input
+                id="descricao"
+                name="descricao"
+                type="text"
+                className="form-control"
+                placeholder="Descrição do Produto"
+                required
+              />
+            </div>
+
+            <div className="col-md-6 mb-3">
+              <label htmlFor="prioridade">Prioridade:</label>
+              <select
+                id="prioridade"
+                name="prioridade"
+                className="form-control"
+                defaultValue="media"
+                required
+              >
+                <option value="baixa">Baixa</option>
+                <option value="media">Média</option>
+                <option value="alta">Alta</option>
+              </select>
+            </div>
+
+            <div className="col-md-6 mb-3">
+              <label htmlFor="status">Status:</label>
+              <select
+                id="status"
+                name="status"
+                className="form-control"
+                defaultValue="pendente"
+                required
+              >
+                <option value="pendente">Pendente</option>
+                <option value="em_andamento">Em andamento</option>
+                <option value="concluido">Concluído</option>
+              </select>
+            </div>
+
+            <div className="col-md-6 mb-3">
+              <label htmlFor="capa">Capa (URL):</label>
+              <input
+                id="capa"
+                name="capa"
+                type="text"
+                className="form-control"
+                placeholder="URL da capa do produto"
+              />
+            </div>
+
+            <div className="col-md-6 mb-3">
+              <label htmlFor="prazo">Data de Validade:</label>
+              <input
+                id="prazo"
+                name="prazo"
+                type="date"
+                className="form-control"
+              />
+            </div>
+
+            <div className="col-md-6 mb-3">
+              <label htmlFor="data">Data de Fabricação:</label>
+              <input
+                id="data"
+                name="data"
+                type="date"
+                className="form-control"
+              />
+            </div>
+
+            <div className="col-12 d-flex justify-content-around mt-4">
+              <button type="submit" className="btn btn-success" disabled={loading}>
+                {loading ? 'Enviando...' : 'Enviar'}
+              </button>
+              <button type="reset" className="btn btn-danger">
+                Limpar
+              </button>
             </div>
           </div>
-        </div>
-        <div className="card-body">
-          <form onSubmit={handleSubmit}>
-            <div className="row mb-3">
-              <div className="col-5">
-                <div className="form-group">
-                  <label htmlFor="titulo">Titulo:</label>
-                  <input id="titulo" className="form-control" type="text" placeholder="Nome do Produto" name="titulo"/>
-                </div>
-              </div>
-              <div className="col-5">
-                <div className="form-group">
-                  <label htmlFor="descricao">Descrição:</label>
-                  <input id="descricao" type="text" className="form-control" placeholder="Descrição do Produto" name="descricao"/>
-                </div>
-              </div>
-              <div className="col-5">
-                <div className="form-group">
-                  <label htmlFor="prioridade">Prioridade :</label>
-                  <input id="prioridade" type="text" className="form-control" placeholder=" " name="prioridade"/>
-                </div>
-              </div>
-            <div className="col-5">
-                <div className="form-group">
-                  <label htmlFor="status">Status :</label>
-                  <input id="status" type="text" className="form-control" placeholder=" " name="status"/>
-                </div>
-              </div>
-            
-              <div className="col-5">
-                <div className="form-group">
-                  <label htmlFor="capa">Capa:</label>
-                  <input id="capa" type="text" className="form-control" placeholder="URL da capa do album" name="capa"/>
-                </div>
-              </div>
-              <div className="col-5">
-                <div className="form-group">
-                  <label htmlFor="prazo">Data de Validade:</label>
-                  <input id="prazo" type="date" className="form-control" placeholder="Data de Vencimento" name="prazo"/>
-                </div>
-              </div>
-              <div className="col-5">
-                <div className="form-group">
-                  <label htmlFor="data">Data de Fabricação:</label>
-                  <input id="data" type="date" className="form-control"  placeholder="Data Fabricação" name="data"/>
-                </div>
-              </div>
-            
-              
-              <div className="col-5 d-flex align-items-end justify-content-around">
-                <button type="submit" className="btn btn-success">Enviar</button>
-                <button type="reset" className="btn btn-danger">Limpar</button>
-              </div>
-            </div>
-                    
-          
-          </form>
-        </div>
+        </form>
       </div>
-      </div>
-    
+    </div>
+  );
+};
 
-
-
-
-
-  )
-}
-
-
-
-export default Cadastro
+export default Cadastro;

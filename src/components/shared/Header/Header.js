@@ -3,11 +3,14 @@ import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-success w-100">
+    <nav className="navbar navbar-expand-lg navbar-light bg-success">
       <div className="container">
-        <Link className="navbar-brand" to="/Inicio">
-          Pagina Inicial
+        {/* Logo ou Página Inicial */}
+        <Link className="navbar-brand text-white fw-bold" to="/inicio">
+          Página Inicial
         </Link>
+
+        {/* Botão para menu responsivo */}
         <button
           className="navbar-toggler"
           type="button"
@@ -20,20 +23,19 @@ const Header = () => {
           <span className="navbar-toggler-icon"></span>
         </button>
 
+        {/* Itens do menu */}
         <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+          <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <Link className="nav-link" to="/">
-               Produtos Cadastrado
+              <Link className="nav-link text-white" to="/">
+                Produtos Cadastrados
               </Link>
             </li>
-            
             <li className="nav-item">
-              <Link className="nav-link" to="/cadastro">
-                 Cadastrado de Produtos
+              <Link className="nav-link text-white" to="/cadastro">
+                Cadastrar Produto
               </Link>
             </li>
-            
           </ul>
         </div>
       </div>

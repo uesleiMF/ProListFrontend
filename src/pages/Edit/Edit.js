@@ -3,159 +3,171 @@ import { useParams, useNavigate } from "react-router-dom";
 import Api from "../../api/api";
 
 const Edit = () => {
-  
   const navigate = useNavigate();
-  
-  const [produto, setProduto] = useState({
-     titulo: '',
-     descricao:'',
-     prioridade:'',
-     status:'',
-     capa:'',
-     data:'',
-     prazo:''
+  const { id } = useParams();
 
+  const [produto, setProduto] = useState({
+    titulo: '',
+    descricao: '',
+    prioridade: 'media',
+    status: 'pendente',
+    capa: '',
+    data: '',
+    prazo: ''
   });
 
-   useEffect(() => {
+  const [erro, setErro] = useState('');
+
+  useEffect(() => {
     getProdutoById();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const {id}= useParams();
-
   const getProdutoById = async () => {
-    const request = await Api.fetchGetById(id);
-    const produto = await request.json();
-    setProduto(produto);
+    try {
+      const data = await Api.fetchGetById(id); // já retorna JSON
+      setProduto({
+        ...data,
+        prazo: data.prazo ? data.prazo.split('T')[0] : '',
+        data: data.data ? data.data.split('T')[0] : ''
+      });
+    } catch (err) {
+      console.error(err.message);
+      setErro(err.message);
+    }
   };
 
   const handleFieldsChange = (evento) => {
-    
-    const produtoEdit = { ...produto };
+    setProduto({
+      ...produto,
+      [evento.target.name]: evento.target.value
+    });
+  };
 
-     produtoEdit[evento.target.name] = evento.target.value;
-
-    setProduto(produtoEdit);
-
-  }
   const handleSubmit = async (evento) => {
     evento.preventDefault();
-    const request = await Api.fetchPut(produto, id);
-    const data = await request.json();
-    alert(data.message);
-    navigate(`/view/${id}`);
+    try {
+      const data = await Api.fetchPut(produto, id); // já retorna JSON
+      if (data.error) {
+        alert(data.error);
+      } else {
+        alert(data.message);
+        navigate(`/view/${id}`);
+      }
+    } catch (err) {
+      console.error(err.message);
+      alert('Erro ao atualizar produto');
+    }
+  };
+
+  if (erro) {
+    return <p className="text-danger text-center mt-5">{erro}</p>;
   }
 
+  if (!produto) {
+    return <p className="text-center mt-5">Carregando...</p>;
+  }
 
   return (
     <div className="container">
       <div className="card mt-4">
-        <div className="card-title ">
-          <div className="row">
-            <div className="col">
-              <h3 className="mx-3 my-3">Edição do Produto</h3>
-            </div>
-          </div>
+        <div className="card-title">
+          <h3 className="mx-3 my-3">Edição do Produto</h3>
         </div>
         <div className="card-body">
           <form onSubmit={handleSubmit}>
             <div className="row mb-4">
               <div className="col-4">
-                <div className="form-group">
-                  <label htmlFor="titulo">Titulo:</label>
-                  <input
-                    id="titulo"
-                    className="form-control"
-                    type="text"
-                    placeholder="Nome do Produto"
-                    value={produto.titulo}
-                    onChange={handleFieldsChange}
-                    name="titulo"
-                  />
-                </div>
+                <label htmlFor="titulo">Título:</label>
+                <input
+                  id="titulo"
+                  type="text"
+                  className="form-control"
+                  name="titulo"
+                  value={produto.titulo}
+                  onChange={handleFieldsChange}
+                  required
+                />
               </div>
               <div className="col-4">
-                <div className="form-group">
-                  <label htmlFor="descricao">Descrição do produto:</label>
-                  <input
-                  
-                    id="descricao"
-                    type="text"
-                    className="form-control"
-                    placeholder="Descrição do Produto"
-                    value={produto.descricao}
-                    onChange={handleFieldsChange}
-                    name="descricao"
-                    
-                  />
-                </div>
+                <label htmlFor="descricao">Descrição:</label>
+                <input
+                  id="descricao"
+                  type="text"
+                  className="form-control"
+                  name="descricao"
+                  value={produto.descricao}
+                  onChange={handleFieldsChange}
+                  required
+                />
               </div>
               <div className="col-4">
-                <div className="form-group">
-                  <label htmlFor="prioridade">Prioridade do Produto:</label>
-                  <input
-                    id="prioridade"
-                    type="text"
-                    className="form-control"
-                    value={produto.prioridade}
-                    onChange={handleFieldsChange}
-                    placeholder="ruim bom otimo"
-                    name="prioridade"
-                  />
-                </div>
+                <label htmlFor="prioridade">Prioridade:</label>
+                <select
+                  id="prioridade"
+                  className="form-control"
+                  name="prioridade"
+                  value={produto.prioridade}
+                  onChange={handleFieldsChange}
+                >
+                  <option value="baixa">Baixa</option>
+                  <option value="media">Média</option>
+                  <option value="alta">Alta</option>
+                </select>
               </div>
             </div>
-            <div className="row">
+
+            <div className="row mb-4">
               <div className="col-4">
-                <div className="form-group">
-                  <label htmlFor="capa">Link do Produto:</label>
-                  <input
-                    id="capa"
-                    type="text"
-                    value={produto.capa}
-                    onChange={handleFieldsChange}
-                    className="form-control"
-                    placeholder="URL da Produto"
-                    name="capa"
-                  />
-                </div>
+                <label htmlFor="status">Status:</label>
+                <select
+                  id="status"
+                  className="form-control"
+                  name="status"
+                  value={produto.status}
+                  onChange={handleFieldsChange}
+                >
+                  <option value="pendente">Pendente</option>
+                  <option value="em_andamento">Em andamento</option>
+                  <option value="concluido">Concluído</option>
+                </select>
               </div>
               <div className="col-4">
-                <div className="form-group">
-                  <label htmlFor="prazo">Validade do produto:</label>
-                  <input
-                    id="prazo"
-                    type="date"
-                    value={produto.prazo}
-                    onChange={handleFieldsChange}
-                    className="form-control"
-                    placeholder="Validade"
-                    name="prazo"
-                  />
-                </div>
+                <label htmlFor="capa">Link da imagem:</label>
+                <input
+                  id="capa"
+                  type="text"
+                  className="form-control"
+                  name="capa"
+                  value={produto.capa}
+                  onChange={handleFieldsChange}
+                />
               </div>
               <div className="col-4">
-                <div className="form-group">
-                  <label htmlFor="data">Validade :</label>
-                  <input
-                    id="data"
-                    type="date"
-                    value={produto.data}
-                    onChange={handleFieldsChange}
-                    className="form-control"
-                    placeholder="Validade"
-                    name="data"
-                  />
-                </div>
+                <label htmlFor="prazo">Validade:</label>
+                <input
+                  id="prazo"
+                  type="date"
+                  className="form-control"
+                  name="prazo"
+                  value={produto.prazo}
+                  onChange={handleFieldsChange}
+                />
               </div>
-              <div className="col-4 d-flex align-items-end justify-content-around">
-                <button type="submit" className="btn btn-success">
-                  Enviar
-                </button>
-                
+              <div className="col-4 mt-3">
+                <label htmlFor="data">Data de Fabricação:</label>
+                <input
+                  id="data"
+                  type="date"
+                  className="form-control"
+                  name="data"
+                  value={produto.data}
+                  onChange={handleFieldsChange}
+                />
               </div>
             </div>
-          
+
+            <button type="submit" className="btn btn-success">Salvar</button>
           </form>
         </div>
       </div>

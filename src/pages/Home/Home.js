@@ -1,33 +1,21 @@
-import React from 'react'
+import React from 'react';
 import ListProdut from '../../components/structure/ListProd';
 
 const Home = () => {
   return (
-   
-     
-    <div className="container">
-     <div className="row mb-3">
-    <div class="container bg-info">
-  <div class="nome text-center">
-  <div className="col-9">
-  
-</div>
-<div class="p-1 mb-2 bg-info text-black">
-    
-    <h1 className="text-center h1">CONHEÇAM NOSSOS PRODUTOS</h1>
-    <ListProdut/>
-     
-
+    <div className="container my-4">
+      <div className="row mb-3">
+        <div className="container bg-info p-3">
+          <div className="nome text-center">
+            <h1 className="text-black mb-4">CONHEÇAM NOSSOS PRODUTOS</h1>
+            <div className="col-12">
+              <ListProdut />
+            </div>
+          </div>
+        </div>
       </div>
-     </div>
     </div>
-   </div>
-  </div>
-  )
-}
+  );
+};
 
-
-
-
-export default Home
-
+export default Home;
